@@ -125,4 +125,3 @@ class SentimentRecommenderModel:
         words = [self.lemmatizer.lemmatize(tag[0], self.get_wordnet_pos(
             tag[1])) for idx, tag in enumerate(word_pos_tags)]
         return " ".join(words)
-Footer
