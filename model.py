@@ -18,10 +18,10 @@ nltk.download('omw-1.4')
 class SentimentRecommenderModel:
 
     ROOT_PATH = "model/"
-    MODEL_NAME = "sentiment-classification-xg-boost-model.pkl"
-    VECTORIZER = "tfidf-vectorizer.pkl"
-    RECOMMENDER = "user_final_rating.pkl"
-    CLEANED_DATA = "cleaned-data.pkl"
+    MODEL_NAME = "20221130-024346_sentiment-bsaed-product-recommendation.pkl"
+    VECTORIZER = "20221130-024431_tfidf_vectorizer.pkl"
+    RECOMMENDER = "20221130-024423_user_final_rating.pkl"
+    CLEANED_DATA = "20221130-024432_cleaned_df.pkl"
 
     def __init__(self):
         self.model = pickle.load(open(
@@ -39,7 +39,7 @@ class SentimentRecommenderModel:
     """function to get the top product 20 recommendations for the user"""
 
     def getRecommendationByUser(self, user):
-        recommedations = []
+        recommendations = []
         return list(self.user_final_rating.loc[user].sort_values(ascending=False)[0:20].index)
 
     """function to filter the product recommendations using the sentiment model and get the top 5 recommendations"""
