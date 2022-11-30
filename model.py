@@ -17,17 +17,22 @@ nltk.download('omw-1.4')
 
 
 class SentimentRecommenderModel:
+    ROOT_PATH = "model/"
+    MODEL_NAME = "20221130-024346_sentiment-bsaed-product-recommendation.pkl"
+    VECTORIZER = "20221130-024431_tfidf_vectorizer.pkl"
+    RECOMMENDER = "20221130-024423_user_final_rating.pkl"
+    CLEANED_DATA = "20221130-024432_cleaned_df.pkl"
 
     def __init__(self):
         self.model = pickle.load(open(
-            Constants.ROOT_PATH + Constants.MODEL_NAME, 'rb'))
+            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.MODEL_NAME, 'rb'))
         self.vectorizer = pd.read_pickle(
-            Constants.ROOT_PATH + Constants.VECTORIZER)
+            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.VECTORIZER)
         self.user_final_rating = pickle.load(open(
-            Constants.ROOT_PATH + Constants.RECOMMENDER, 'rb'))
+            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.RECOMMENDER, 'rb'))
         self.data = pd.read_csv("dataset/sample30.csv")
         self.cleaned_data = pickle.load(open(
-            Constants.ROOT_PATH + Constants.CLEANED_DATA, 'rb'))
+            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.CLEANED_DATA, 'rb'))
         self.lemmatizer = WordNetLemmatizer()
         self.stop_words = set(stopwords.words('english'))
 
