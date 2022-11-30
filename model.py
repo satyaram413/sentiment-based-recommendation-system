@@ -8,7 +8,6 @@ import numpy as np
 import re
 import string
 import nltk
-from constants import Constants
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
