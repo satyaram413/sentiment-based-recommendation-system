@@ -42,5 +42,4 @@ def predict_sentiment():
 
 
 if __name__ == '__main__':
-    app.run()
-Footer
+    app.run(debug=True)
