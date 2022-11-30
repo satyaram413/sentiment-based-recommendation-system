@@ -1,0 +1,36 @@
+.navbar-dark .navbar-brand {
+  color: white;
+}
+.navbar > .container-fluid {
+  justify-content: center;
+}
+.bg-primary {
+  background-color: #f79800 !important;
+}
+.border-container {
+  border: 2px dotted black;
+  border-color: revert;
+  background: lightgray;
+}
+body {
+  background: url(/static/Forecasting-the-future-of-eCommerce.png) no-repeat
+    center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+.another-container {
+  margin-top: 3vh;
+}
+
+.row {
+  --bs-gutter-x: 0;
+}
+
+.form-class {
+  margin: 1vh;
+}
+.rec-header {
+  color: black;
+  font-weight: 700;
+}
