@@ -11,6 +11,7 @@
   border: 2px dotted black;
   border-color: revert;
   background: lightgray;
+  opacity: 80%;
 }
 body {
   background: url(/static/Forecasting-the-future-of-eCommerce.png) no-repeat
