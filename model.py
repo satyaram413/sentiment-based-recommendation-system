@@ -8,6 +8,7 @@ import numpy as np
 import re
 import string
 import nltk
+from constants import Constants
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -17,29 +18,22 @@ nltk.download('omw-1.4')
 
 class SentimentRecommenderModel:
 
-    ROOT_PATH = "model/"
-    MODEL_NAME = "20221130-024346_sentiment-bsaed-product-recommendation.pkl"
-    VECTORIZER = "20221130-024431_tfidf_vectorizer.pkl"
-    RECOMMENDER = "20221130-024423_user_final_rating.pkl"
-    CLEANED_DATA = "20221130-024432_cleaned_df.pkl"
-
     def __init__(self):
         self.model = pickle.load(open(
-            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.MODEL_NAME, 'rb'))
+            Constants.ROOT_PATH + Constants.MODEL_NAME, 'rb'))
         self.vectorizer = pd.read_pickle(
-            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.VECTORIZER)
+            Constants.ROOT_PATH + Constants.VECTORIZER)
         self.user_final_rating = pickle.load(open(
-            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.RECOMMENDER, 'rb'))
+            Constants.ROOT_PATH + Constants.RECOMMENDER, 'rb'))
         self.data = pd.read_csv("dataset/sample30.csv")
         self.cleaned_data = pickle.load(open(
-            SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.CLEANED_DATA, 'rb'))
+            Constants.ROOT_PATH + Constants.CLEANED_DATA, 'rb'))
         self.lemmatizer = WordNetLemmatizer()
         self.stop_words = set(stopwords.words('english'))
 
     """function to get the top product 20 recommendations for the user"""
 
     def getRecommendationByUser(self, user):
-        recommendations = []
         return list(self.user_final_rating.loc[user].sort_values(ascending=False)[0:20].index)
 
     """function to filter the product recommendations using the sentiment model and get the top 5 recommendations"""
@@ -52,7 +46,6 @@ class SentimentRecommenderModel:
             filtered_data = self.cleaned_data[self.cleaned_data.id.isin(
                 recommendations)]
             # preprocess the text before tranforming and predicting
-            #filtered_data["reviews_text_cleaned"] = filtered_data["reviews_text"].apply(lambda x: self.preprocess_text(x))
             # transfor the input data using saved tf-idf vectorizer
             X = self.vectorizer.transform(
                 filtered_data["reviews_text_cleaned"].values.astype(str))
